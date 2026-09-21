@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCO Labs</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --accent: #38bdf8;
+    --accent-dark: #0ea5e9;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --success: #34d399;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 2.5rem 1.5rem 4rem;
+  }
+  header {
+    max-width: 1100px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+  header h1 {
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+  }
+  header p {
+    color: var(--text-dim);
+    margin: 0;
+    font-size: 1rem;
+  }
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.25rem 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .card h2 {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+  .card-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .btn-launch {
+    background: var(--accent);
+    color: #0f172a;
+  }
+  .btn-launch:hover { background: var(--accent-dark); }
+  .btn-copy {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--card-border);
+  }
+  .btn-copy:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-copy.copied {
+    border-color: var(--success);
+    color: var(--success);
+  }
+  .embed-wrap {
+    display: none;
+    margin-top: 0.25rem;
+  }
+  .embed-wrap.open { display: block; }
+  .embed-wrap textarea {
+    width: 100%;
+    min-height: 90px;
+    resize: vertical;
+    background: #0f172a;
+    color: #cbd5e1;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 0.6rem;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+  footer {
+    max-width: 1100px;
+    margin: 3rem auto 0;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>MCO Labs</h1>
+  <p>Interactive labs and simulations. Click Launch to view a lab, or Embed Code to copy an iframe you can paste into a Canvas page.</p>
+</header>
+
+<main id="lab-grid"></main>
+
+<footer>
+  Hosted on GitHub Pages &middot; <span id="repo-root"></span>
+</footer>
+
+<script>
+  var REPO_ROOT = "https://deramsey.github.io/MCOLabs/";
+  document.getElementById("repo-root").textContent = REPO_ROOT;
+
+  var labs = [
+    { title: "BP Refinery Explosion", folder: "BP Refinery Explosion", file: "story_html5.html" },
+    { title: "Imperial Sugar", folder: "Imperial Sugar", file: "story_html5.html" },
+    { title: "Line Interactive UPS", folder: "Line Interactive UPS", file: "line_interactive_ups_scenarios.html" },
+    { title: "Manufacturing and Production", folder: "Manufacturing and Production", file: "story_html5.html" },
+    { title: "PUE v DCiE", folder: "PUE v DCiE", file: "story_html5.html" },
+    { title: "Reactor Diagram", folder: "Reactor Diagram", file: "story_html5.html" },
+    { title: "Telephone Exchange", folder: "Telephone_Exchange", file: "Telephone Exchange.html" },
+    { title: "Three-Phase Power", folder: "Three-Phase Power", file: "story_html5.html" },
+    { title: "Traditional vs Smart Grid", folder: "Traditional vs Smart Grid", file: "traditional_v_smart.html" },
+    { title: "Variable Frequency Drives", folder: "Variable Frequency Drives", file: "story_html5.html" }
+  ];
+
+  function encodePath(folder, file) {
+    return folder.split("/").map(encodeURIComponent).join("/") + "/" + encodeURIComponent(file);
+  }
+
+  function buildEmbedCode(url) {
+    return '<iframe src="' + url + '" width="100%" height="600" allowfullscreen="true" ' +
+      'webkitallowfullscreen="true" mozallowfullscreen="true" style="border:0"></iframe>';
+  }
+
+  var grid = document.getElementById("lab-grid");
+
+  labs.forEach(function (lab, idx) {
+    var url = REPO_ROOT + encodePath(lab.folder, lab.file);
+    var embedCode = buildEmbedCode(url);
+
+    var card = document.createElement("div");
+    card.className = "card";
+
+    var h2 = document.createElement("h2");
+    h2.textContent = lab.title;
+    card.appendChild(h2);
+
+    var actions = document.createElement("div");
+    actions.className = "card-actions";
+
+    var launchBtn = document.createElement("a");
+    launchBtn.className = "btn btn-launch";
+    launchBtn.href = url;
+    launchBtn.target = "_blank";
+    launchBtn.rel = "noopener";
+    launchBtn.textContent = "Launch";
+    actions.appendChild(launchBtn);
+
+    var copyBtn = document.createElement("button");
+    copyBtn.className = "btn btn-copy";
+    copyBtn.type = "button";
+    copyBtn.textContent = "Embed Code";
+    actions.appendChild(copyBtn);
+
+    card.appendChild(actions);
+
+    var embedWrap = document.createElement("div");
+    embedWrap.className = "embed-wrap";
+    var textarea = document.createElement("textarea");
+    textarea.readOnly = true;
+    textarea.value = embedCode;
+    embedWrap.appendChild(textarea);
+    card.appendChild(embedWrap);
+
+    copyBtn.addEventListener("click", function () {
+      var isOpen = embedWrap.classList.contains("open");
+      if (!isOpen) {
+        embedWrap.classList.add("open");
+      }
+      textarea.focus();
+      textarea.select();
+
+      function markCopied() {
+        copyBtn.classList.add("copied");
+        copyBtn.textContent = "Copied!";
+        setTimeout(function () {
+          copyBtn.classList.remove("copied");
+          copyBtn.textContent = "Embed Code";
+        }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(embedCode).then(markCopied).catch(function () {
+          try { document.execCommand("copy"); markCopied(); } catch (e) {}
+        });
+      } else {
+        try { document.execCommand("copy"); markCopied(); } catch (e) {}
+      }
+    });
+
+    grid.appendChild(card);
+  });
+</script>
+
+</body>
+</html>

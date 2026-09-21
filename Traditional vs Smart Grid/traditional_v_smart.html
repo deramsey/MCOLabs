@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Traditional Power Grid vs. The Smart Grid</title>
+   <script src="jquery.min.js"></script>
+  <script src="jquery-ui.min.js"></script>
+  <script>
+  $(function() {
+    $( "#accordion" ).accordion({
+      collapsible: true,
+      heightStyle: "content",
+      active: false,
+      collapsible: true
+    });
+  });
+  </script>
+
+    <script>
+  $(function() {
+    $( "#accordion2" ).accordion({
+      collapsible: true,
+      heightStyle: "content",
+      active: false,
+      collapsible: true
+    });
+  });
+  </script>
+
+  <style type="text/css">
+#accordion .ui-accordion-content {
+    max-height: 500px;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+  #grid {
+    float: left;
+    width:350px;
+    height: auto;
+    overflow: hidden;
+    margin-right: 50px;
+  }
+
+  #trad-header {
+    font-size: 200%;
+    font-weight: bold;
+    color: #C1272D;
+  }
+
+  #smart-header {
+    font-size: 200%;
+    font-weight: bold;
+    color: #009245;
+  }
+
+  .trad {
+    color: white;
+    background-color:#C1272D;
+    padding: 3px;
+  }
+
+  .smart {
+    color: white;
+    background-color:#009245;
+    padding: 3px;
+  }
+  </style>
+
+</head>
+
+
+<body>
+ <div id="grid">
+ <div id="logo"><p align="center"><img src="img/traditional-grid.png" alt=""></p></div>
+ <div id="trad-header"><p align="center">TRADITIONAL GRID</p></div>
+<div id="accordion">
+  <h3 class="trad">Electromechanical &plusmn;</h3>
+  <div>
+    <p>Traditional energy infrastructure is electromechanical. This means that it is of, relating to, or denoting a mechanical device that is electrically operated. Technology of this manner is typically considered to be "dumb" as it has no means of communication between devices and little internal regulation.</p>
+  </div>
+  <h3 class="trad">One-Way Distribution &plusmn;</h3>
+  <div>
+    <p>Power can only be distributed from the main plant using traditional energy infrastructure.</p>
+  </div>
+  <h3 class="trad">Centralized Generation &plusmn;</h3>
+  <div>
+    <p>With traditional energy infrastructure, all power must be generated from a central location. This eliminates the possibility of easily incorporating alternative energy sources into the grid.</p>
+  </div>
+  <h3 class="trad">Few Sensors &plusmn;</h3>
+  <div>
+    <p>The infrastruce is not equipped to handle many sensors on the lines. This makes it difficult to pinpoint the location of a problem and can result in longer downtimes.</p>
+  </div>
+    <h3 class="trad">Manual Monitoring &plusmn;</h3>
+  <div>
+    <p>Due to limitations in traditional infrastructure, energy distribution must be monitored manually.</p>
+  </div>
+    <h3 class="trad">Manual Restoration &plusmn;</h3>
+  <div>
+    <p>In order to make repairs on traditional energy infrastructure, technicians have to physically go to the location of the failure to make repairs. The need for this can extend the amount of time that outages occur. </p>
+  </div>
+    <h3 class="trad">Failures and Blackouts &plusmn;</h3>
+  <div>
+    <p>As a result of aging and limitations, traditional energy infrastructure is prone to failures. Failure of infrastructure can lead to blackouts, a condition where the end customer is receiving no power to their unit causing downtime.</p>
+  </div>
+    <h3 class="trad">Limited Control &plusmn;</h3>
+  <div>
+    <p>Using traditional power infrastructure, energy is very difficult to control. After leaving the power plant or substation, companies have no control over the energy distribution. </p>
+  </div>
+    <h3 class="trad">Few Customer Choices &plusmn;</h3>
+  <div>
+    <p>The traditional power grid system infrastructure is not properly equipped to give customers a choice in the way they receive their electricity. Alternative energy sources, for example, have to be separated from power plants and traditional grid infrastructure. This is also part of the reasoning behind the establishment of electric companies as a public utility.</p>
+  </div>
+</div>
+ </div>
+ <div id="grid">
+ <div id="smart-logo"><p align="center"><img src="img/smart-grid.png" alt=""></p></div>
+ <div id="smart-header"><p align="center">SMART GRID</p></div>
+<div id="accordion2">
+  <h3 class="smart">Digital &plusmn;</h3>
+  <div>
+    <p>The smart grid employs digital technology allowing for increased communication between devices and facilitating remote control and self-regulation.</p>
+  </div>
+  <h3 class="smart">Two-Way Distribution &plusmn;</h3>
+  <div>
+    <p>While power is still distributed from the primary power plant, in a smart grid system, power can also go back up the lines to the main plant from a secondary provider. An individual with access to alternative energy sources, such as solar panels, can actually put energy back on to the grid.</p>
+  </div>
+  <h3 class="smart">Distributed Generation &plusmn;</h3>
+  <div>
+    <p>Using smart grid infrastructure, power can be distributed from multiple plants and substations to aid in balancing the load, decrease peak time strains, and limit the amount of power outages. </p>
+  </div>
+  <h3 class="smart">Sensors Throughout &plusmn;</h3>
+  <div>
+    <p>In a smart grid infrastructure system, there are multiple sensors placed on the lines. This helps to pinpoint the location of a problem and can help reroute power to where it is needed while limiting the areas affected by downtime.</p>
+  </div>
+    <h3 class="smart">Self-Monitoring &plusmn;</h3>
+  <div>
+    <p>The smart grid can monitor itself using digital technology. This allows it to balance power loads, troubleshoot outages, and manage distribution without the need for direct intervention from a technician.</p>
+  </div>
+    <h3 class="smart">Self-Healing &plusmn;</h3>
+  <div>
+    <p>Sensors can detect problems on the line and work to do simple troubleshooting and repairs without intervention. For problems related to infrastructure damage, the smart grid can immediately report to technicians at the monitoring center to begin the necessary repairs.</p>
+  </div>
+    <h3 class="smart">Adaptive and Islanding &plusmn;</h3>
+  <div>
+    <p>Using a smart grid system, power can be rerouted to go around any problem areas. This limits the area impacted by power outages and can do it on a per residence level.</p>
+  </div>
+    <h3 class="smart">Pervasive Control &plusmn;</h3>
+  <div>
+    <p>With the increased amount of sensors and other smart infrastructure, energy companies have more control than ever over power distribution. Energy and energy consumption can be monitored all the way down the line; from the moment it leaves the power plant, all the way to the consumer. </p>
+  </div>
+    <h3 class="smart">Many Customer Choices &plusmn;</h3>
+  <div>
+    <p>Using smart technologies, infrastructure can be shared. This allows more companies and forms of alternative energy to come on to the grid allowing consumers to have more choice in how they receive energy.</p>
+  </div>
+</div>
+ </div>
+</body>
+</html>
